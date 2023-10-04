@@ -1,4 +1,17 @@
-{
+const StyleDictionary = require("style-dictionary");
+
+const jsFlatFormat = {
+    name: "javascript/flat",
+    formatter: ({ properties }) => {
+        return `module.exports = ${
+            JSON.stringify(properties, null, 2)
+        }`;
+    },
+};
+
+StyleDictionary.registerFormat(jsFlatFormat);
+
+module.exports = {
     "source": [
         "tokens/**/*.json"
     ],
@@ -19,7 +32,7 @@
             "files": [
                 {
                     "destination": "_variables.js",
-                    "format": "javascript/es6"
+                    "format": "javascript/flat" // es6 to flat
                 }
             ]
         }
