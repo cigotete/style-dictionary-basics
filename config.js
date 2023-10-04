@@ -1,3 +1,4 @@
+const _ = require("lodash"); // use to convert keys to a different case
 const StyleDictionary = require("style-dictionary");
 
 const jsFlatFormat = {
@@ -9,7 +10,17 @@ const jsFlatFormat = {
     },
 };
 
+const scssFlatFormat = {
+    name: "scss/flat",
+    formatter: ({ properties }) => {
+        return Object.entries(properties).map(([key, value]) => {
+            return `$${_.kebabCase(key)}: ${value}`;
+        }).join(';\n');
+    },
+};
+
 StyleDictionary.registerFormat(jsFlatFormat);
+StyleDictionary.registerFormat(scssFlatFormat);
 
 module.exports = {
     "source": [
@@ -22,7 +33,7 @@ module.exports = {
             "files": [
                 {
                     "destination": "_variables.scss",
-                    "format": "scss/variables"
+                    "format": "scss/flat" // variables to flat
                 }
             ]
         },
