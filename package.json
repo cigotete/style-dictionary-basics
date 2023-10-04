@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "lodash": "^4.17.21",
     "style-dictionary": "^3.8.0"
   }
 }
